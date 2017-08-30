@@ -38,11 +38,21 @@ $("#start").on("click", function() {
 
         function play (){
         run();
-        var qtext = "";
+        var qtext = MyQuestion.question;
         for (var i = 0; i < MyQuestion.length; i++) {
-            console.log(MyQuestion[i]);
-            qtext = MyQuestion.question;
-            $("#question").html("qtext " + i + ": "+qtext);
+            if(number > 0){
+              
+            }
+            $("#question").html("Question " + (i+1) + ": "+ MyQuestion[i].question); 
+            $("#answers").html("A " + ": "+ MyQuestion[i].answers.a+"<br>"+ "B " + ": "+ MyQuestion[i].answers.b+"<br>"+"C " + ": "+ MyQuestion[i].answers.c+"<br>"+"D " + ": "+ MyQuestion[i].answers.d+"<br>"
+        ); 
+            
+            
+            
+            
+            console.log(MyQuestion[i].question);
+         return this.question + " " + this.answers;
+            $("#question").html("Question " + i + ": "+qtext);
 
         }
         }
