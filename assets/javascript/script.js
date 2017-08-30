@@ -1,4 +1,7 @@
-var counter_start = 5;
+var select_answer;
+var clicked_id;
+var counter_start = 30;
+var result_time = 6;
 var number = counter_start;
 var losses = 0;
 var wins = 0;
@@ -36,6 +39,14 @@ var MyQuestion = [{
 },
 ]
 
+
+function reply_click(clicked_id)
+{
+    console.log(clicked_id);
+    select_answer = clicked_id;
+    console.log(select_answer);
+}
+
 $("#answer_buttons").hide();
     
 
@@ -57,8 +68,28 @@ $("#start").on("click", function() {
             
             $("#answer_buttons").show();
 
-             $("#answer_buttons").on("click", function() {
+            $("#answer_buttons").on("click", function() {
                console.log("answer made")
+      
+               function reply_click(clicked_id)
+               {
+                   console.log(clicked_id);
+               }
+
+  
+              if (select_answer==="a"){console.log("YEs")
+                $("#info").html("You are correct! "+MyQuestion[i].info)
+              wins == wins++
+              stop()
+              play()
+              ;
+
+            }else{$("#info").html("You are incorrect! "+MyQuestion[i].info);
+            losses == losses++;
+        console.log(losses)}
+            
+               console.log(select_answer);
+
             })
             
             
@@ -85,14 +116,18 @@ $("#start").on("click", function() {
             //  Once number hits zero...
             if (number === 0) {console.log ("end")
             stop();
-            alert("You Ran out of time on that question. Click OK to Continue");
+            $("#info").html("You ran out of time"+MyQuestion[i].info);
+            console.log(MyQuestion[i].info);
+
+//            alert("You Ran out of time on that question. Click OK to Continue");
             no_answer == no_answer++;
+
             console.log(no_answer);
             play(i==i++);
             }
 
             
-              console.log(number);
+      //        console.log(number);
             }
 
     //  The stop function
@@ -117,3 +152,6 @@ $("#start").on("click", function() {
             
            //          function play (){
   //              if (total_value < random_target) {}}}   
+
+
+  
