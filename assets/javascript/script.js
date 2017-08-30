@@ -1,4 +1,8 @@
-var number = 5;
+var counter_start = 5;
+var number = counter_start;
+var losses = 0;
+var wins = 0;
+var no_answer = 0;
 var MyQuestion = [{
     question: "Question 1",
     info: "Here is the info for Question 1",
@@ -13,7 +17,7 @@ var MyQuestion = [{
 {
     question: "Question 2",
     answers: {
-        a:"A Answer",
+        a:"A Answer 2",
         b:"B Answer",
         c:"C Answer",
         d:"D Answer"
@@ -23,7 +27,7 @@ var MyQuestion = [{
 {
     question: "Question 3",
     answers: {
-        a:"A Answer",
+        a:"A Answer 3",
         b:"B Answer",
         c:"C Answer",
         d:"D Answer"
@@ -75,9 +79,9 @@ $("#start").on("click", function() {
             //  Once number hits zero...
             if (number === 0) {console.log ("end")
             stop();
-            alert("Time Up!");
-            i=i;
-            $("#answers").html("MyQuestion[i].info");
+            alert("You Ran out of time on that question. Click OK to Continue");
+            no_answer == no_answer++;
+            console.log(no_answer);
             play(i==i++);
             }
 
@@ -87,7 +91,7 @@ $("#start").on("click", function() {
 
     //  The stop function
     function stop() {
-        
+                number = counter_start;
               //  Clears our intervalId
               //  We just pass the name of the interval
               //  to the clearInterval function.
