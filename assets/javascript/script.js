@@ -36,8 +36,12 @@ var MyQuestion = [{
 },
 ]
 
+$("#answer_buttons").hide();
+    
+
 $("#start").on("click", function() {
     console.log("start")
+    $("#start").hide();
      play(i=0);
 })
 
@@ -50,7 +54,9 @@ $("#start").on("click", function() {
  //          }
             $("#question").html("Question " + (i+1) + ": "+ MyQuestion[i].question); 
             $("#answers").html("A " + ": "+ MyQuestion[i].answers.a+"<br>"+ "B " + ": "+ MyQuestion[i].answers.b+"<br>"+"C " + ": "+ MyQuestion[i].answers.c+"<br>"+"D " + ": "+ MyQuestion[i].answers.d+"<br>")
-            $("#clear").html("");
+            
+            $("#answer_buttons").show();
+
              $("#answer_buttons").on("click", function() {
                console.log("answer made")
             })
