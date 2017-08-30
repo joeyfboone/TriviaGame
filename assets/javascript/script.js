@@ -1,13 +1,14 @@
-var number = 30;
+var number = 5;
 var MyQuestion = [{
     question: "Question 1",
+    info: "Here is the info for Question 1",
     answers: {
         a:"A Answer",
         b:"B Answer",
         c:"C Answer",
         d:"D Answer"
     },
-    correctAnswer: "a"
+    correctAnswer: "a",
 },
 {
     question: "Question 2",
@@ -33,35 +34,27 @@ var MyQuestion = [{
 
 $("#start").on("click", function() {
     console.log("start")
-     play();
+     play(i=0);
 })
 
-        function play (){
+        function play(){
         run();
-        var qtext = MyQuestion.question;
-        for (var i = 0; i < MyQuestion.length; i++) {
-            if(number > 0){
-              
-            }
+
+  //      for (var i = 0; i < MyQuestion.length; i++) {
+ //          if(number > 0){
+   console.log(MyQuestion[i])
+ //          }
             $("#question").html("Question " + (i+1) + ": "+ MyQuestion[i].question); 
-            $("#answers").html("A " + ": "+ MyQuestion[i].answers.a+"<br>"+ "B " + ": "+ MyQuestion[i].answers.b+"<br>"+"C " + ": "+ MyQuestion[i].answers.c+"<br>"+"D " + ": "+ MyQuestion[i].answers.d+"<br>"
-        ); 
+            $("#answers").html("A " + ": "+ MyQuestion[i].answers.a+"<br>"+ "B " + ": "+ MyQuestion[i].answers.b+"<br>"+"C " + ": "+ MyQuestion[i].answers.c+"<br>"+"D " + ": "+ MyQuestion[i].answers.d+"<br>")
+            $("#clear").html("");
+             $("#answer_buttons").on("click", function() {
+               console.log("answer made")
+            })
             
             
             
-            
-            console.log(MyQuestion[i].question);
-         return this.question + " " + this.answers;
-            $("#question").html("Question " + i + ": "+qtext);
-
         }
-        }
-
-
-
-
-
-
+   
 
 
 
@@ -80,13 +73,27 @@ $("#start").on("click", function() {
       
       
             //  Once number hits zero...
-            if (number === 0) {console.log ("end")}
+            if (number === 0) {console.log ("end")
+            stop();
+            alert("Time Up!");
+            i=i;
+            $("#answers").html("MyQuestion[i].info");
+            play(i==i++);
+            }
 
             
               console.log(number);
             }
 
-
+    //  The stop function
+    function stop() {
+        
+              //  Clears our intervalId
+              //  We just pass the name of the interval
+              //  to the clearInterval function.
+              clearInterval(intervalId);
+              console.log("stop");
+            }
 
    //           $("#start").on("click", function() {
   //              $('#status').text('Status: In Progress')
