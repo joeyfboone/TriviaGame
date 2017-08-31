@@ -1,4 +1,4 @@
-var counter_start = 5;
+var counter_start = 30;
 var result_time = 6;
 var number = counter_start;
 var losses = 0;
