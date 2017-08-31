@@ -1,19 +1,20 @@
 var select_answer;
 var clicked_id;
-var counter_start = 30;
+var counter_start = 10;
 var result_time = 6;
 var number = counter_start;
 var losses = 0;
 var wins = 0;
 var no_answer = 0;
 var MyQuestion = [{
-    question: "Question 1",
-    info: "Here is the info for Question 1",
+    question: "What show had a talking car?",
+    gif: "https://media.tenor.com/images/0de1530891bb6656145252e790c27bbe/tenor.gif",
+    info: "Answer is A - Knight Rider. Starring David Hasslehoff.",
     answers: {
-        a:"A Answer",
-        b:"B Answer",
-        c:"C Answer",
-        d:"D Answer"
+        a:"Knight Rider",
+        b:"Baywatch",
+        c:"Saved By The Bell",
+        d:"Friends"
     },
     correctAnswer: "a",
 },
@@ -38,7 +39,14 @@ var MyQuestion = [{
     correctAnswer: "c"
 },
 ]
-
+function between(){
+    stop()
+    $("#gif").html('<img src="'+ MyQuestion[i].gif + '" width="200">');
+    $("#gif").show();
+    console.log("Where is my gif "+MyQuestion[i].gif)
+    if (number === 0) {
+    play(i==i++);
+}}
 
 function reply_click(clicked_id)
 {
@@ -48,6 +56,7 @@ function reply_click(clicked_id)
 }
 
 $("#answer_buttons").hide();
+$("#timer").hide();
     
 
 $("#start").on("click", function() {
@@ -63,9 +72,10 @@ $("#start").on("click", function() {
  //          if(number > 0){
    console.log(MyQuestion[i])
  //          }
+            $("#info").html("");
             $("#question").html("Question " + (i+1) + ": "+ MyQuestion[i].question); 
             $("#answers").html("A " + ": "+ MyQuestion[i].answers.a+"<br>"+ "B " + ": "+ MyQuestion[i].answers.b+"<br>"+"C " + ": "+ MyQuestion[i].answers.c+"<br>"+"D " + ": "+ MyQuestion[i].answers.d+"<br>")
-            
+            $("#timer").show();
             $("#answer_buttons").show();
 
             $("#answer_buttons").on("click", function() {
@@ -79,13 +89,15 @@ $("#start").on("click", function() {
   
               if (select_answer==="a"){console.log("YEs")
                 $("#info").html("You are correct! "+MyQuestion[i].info)
+              between()
               wins == wins++
-              stop()
-              play()
+
+
               ;
 
             }else{$("#info").html("You are incorrect! "+MyQuestion[i].info);
             losses == losses++;
+            between()
         console.log(losses)}
             
                console.log(select_answer);
@@ -116,14 +128,15 @@ $("#start").on("click", function() {
             //  Once number hits zero...
             if (number === 0) {console.log ("end")
             stop();
-            $("#info").html("You ran out of time"+MyQuestion[i].info);
+            $("#info").html("You ran out of time. "+MyQuestion[i].info);
             console.log(MyQuestion[i].info);
 
 //            alert("You Ran out of time on that question. Click OK to Continue");
             no_answer == no_answer++;
 
             console.log(no_answer);
-            play(i==i++);
+            between();
+            
             }
 
             
