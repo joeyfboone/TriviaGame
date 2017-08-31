@@ -1,7 +1,4 @@
-//var i=0;
-var select_answer;
-var clicked_id;
-var counter_start = 30;
+var counter_start = 5;
 var result_time = 6;
 var number = counter_start;
 var losses = 0;
@@ -21,7 +18,7 @@ var MyQuestion = [{
 },
 {
     question: "In the Baywatch Spinoff called Baywatch Night, what was Mitch's occupation?",
-    gif: "http://68.media.tumblr.com/tumblr_m4r2rhNsi31qb7sd5o1_400.gif",
+    gif: "https://m.popkey.co/3ccb4b/5MXAW_s-200x150.gif",
     info: "Answer is B - Mitch was a Private Investigator",
     answers: {
         a: "Consultant",
@@ -57,20 +54,20 @@ function stop() {
 
 function between() {
     stop()
-    console.log("" + i);
     $("#answer_buttons").hide();
     $("#gif").html('<img src="' + MyQuestion[i].gif + '" width="200">');
-    console.log("Where is my gif " + MyQuestion[i].gif)
     runbetween(result_time = 5);
-
+    console.log("Inside between" + wins)
 }
 function runbetween() {
+    console.log("Inside runbetween" + wins)
     console.log("Runbetween" + i);
     intervalId = setInterval(decrementbetween, 1000);
+    console.log("Inside runbetween" + wins)
 }
-
 //  The decrement function.
 function decrementbetween() {
+    console.log("Inside decrementbetween" + wins)
     console.log("decrementbetween" + i)
     //  Decrease number by one.
     console.log("result_time" + result_time)
@@ -84,30 +81,28 @@ function decrementbetween() {
     } else {
         $("#timer").html("<h2>" + "Next Question in: " + result_time + "</h2>");
     }
-    
-
     if (result_time == 0) {
         console.log("result_time is 0" + result_time)
-
-
         stop();
         play(i == i++);
     }
-
 }
-
 function reply_click(clicked_id) {
     console.log(clicked_id);
     select_answer = clicked_id;
     console.log(select_answer);
 }
-
 $("#answer_buttons").hide();
 $("#timer").hide();
 
-
 $("#start").on("click", function () {
     console.log("start")
+    var losses = 0;
+    var wins = 0;
+    var no_answer = 0;
+    console.log(losses);
+    console.log(wins);
+    console.log(no_answer); 
     $("#start").hide();
     play(i = 0);
 })
@@ -120,14 +115,8 @@ function play() {
 
     } else {
 
-
-
-
-
         console.log("play" + i)
         run();
-
-
 
         //      for (var i = 0; i < MyQuestion.length; i++) {
         //          if(number > 0){
@@ -140,21 +129,16 @@ function play() {
         $("#timer").show();
         $("#answer_buttons").show();
 
-        $("#answer_buttons").on("click", function () {
-            console.log("answer made")
+    $("#answer_buttons").click(function() { 
+ console.log("answer made");
 
-            function reply_click(clicked_id) {
-                console.log(clicked_id);
-            }
-
-
-            if (select_answer === MyQuestion[i].correctAnswer) {
-                console.log("YEs")
-                $("#info").html("You are correct! " + MyQuestion[i].info)
-                between()
-                wins === wins++
+            if (select_answer == MyQuestion[i].correctAnswer) {
+                wins == wins++;
+                console.log("Inside Value Correct" + wins);
+                $("#info").html("You are correct! " + MyQuestion[i].info);
+                between();
+                
                 console.log("Wins"+wins);
-
                     ;
 
             } else {
@@ -162,36 +146,24 @@ function play() {
                 losses == losses++;
                 console.log("Losses"+losses);
 
+                between();
 
-                between()
-
-                console.log("Losses"+losses)
+                console.log("Losses"+losses);
             }
-
             console.log(select_answer);
-
         })
-
-
     }
 }
-
-
-
-
 function run() {
     intervalId = setInterval(decrement, 1000);
 }
-
 //  The decrement function.
 function decrement() {
-    console.log("decrement");
     //  Decrease number by one.
     number--;
 
     //  Show the number in the #show-number tag.
     $("#timer").html("<h2>" + "Timer: " + number + "</h2>");
-
 
     //  Once number hits zero...
     if (number === 0) {
@@ -199,43 +171,18 @@ function decrement() {
         stop();
         $("#info").html("You ran out of time. " + MyQuestion[i].info);
         console.log(MyQuestion[i].info);
-
         //            alert("You Ran out of time on that question. Click OK to Continue");
         no_answer == no_answer++;
         console.log("NoAnswer"+no_answer);
         between();
-
     }
-
-
-    //        console.log(number);
 }
-
-//  The stop function
-
-
-//           $("#start").on("click", function() {
-//              $('#status').text('Status: In Progress')
-//              total_value = total_value + diamond_1_value;
-//                  console.log ("total value:" + total_value);
-//                  $("#total_value").html("Total Value: "+total_value);
-//                  $("#target_no").html("Target Number: "+random_target);
-///                  test();
-//               })
-
-
-//          function play (){
-//              if (total_value < random_target) {}}}   
-
-
-// if (i=MyQuestion.length) {console.log(i+" "+" "+MyQuestion.length+" "+"END GAME")
-//   $("#start").show();
 function endgame() {
     stop()
     $("#gif").html("");
     $("#info").html("");
     $("#question").html("Correct: " + wins + " Incorrect: " + losses + " Unanswered: " + no_answer);
-    $("#answers").html("")
+    $("#answers").html("Click Start to Play Again")
     $("#timer").hide();
     $("#answer_buttons").hide();
     $("#start").show();
